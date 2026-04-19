@@ -68,23 +68,21 @@
                   <div class="bg-white border rounded-4 p-4 shadow-sm mb-4">
                     <h5 class="fw-bold mb-3 d-flex align-items-center gap-2"><i class="bi bi-card-text text-primary"></i>
                       Executive Summary</h5>
-                    <p class="text-muted">The team discussed the upcoming Q3 product features, prioritizing the new
-                      dashboard redesign and payment gateway integration. Marketing raised concerns about the timeline,
-                      but engineering confirmed resources are available to meet the current launch date if the staging
-                      environment is approved by Friday.</p>
+                    <p class="text-muted"><%= notes?.summary || "Processing..." %></p>
                   </div>
   
-                  <div class="bg-white border rounded-4 p-4 shadow-sm">
-                    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2"><i class="bi bi-lightbulb text-warning"></i>
-                      Key Decisions</h5>
+                  <div class="bg-white border rounded-4 p-4 shadow-sm mt-4">
+                    <h5 class="fw-bold mb-3">
+                      <i class="bi bi-lightbulb text-warning"></i> Key Concepts
+                    </h5>
+
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item px-0 text-dark"><i class="bi bi-check-circle-fill text-success me-2"></i>
-                        The Dashboard Redesign will launch before the Payment Gateway.</li>
-                      <li class="list-group-item px-0 text-dark"><i class="bi bi-check-circle-fill text-success me-2"></i>
-                        Staging environment will be frozen on Friday at 5 PM.</li>
-                      <li class="list-group-item px-0 text-dark border-bottom-0"><i
-                          class="bi bi-check-circle-fill text-success me-2"></i> Marketing budget increased by 15% for the
-                        launch campaign.</li>
+                      <% notes?.key_concepts?.forEach(concept => { %>
+                        <li class="list-group-item px-0 text-dark">
+                          <i class="bi bi-check-circle text-primary me-2"></i>
+                          <%= concept %>
+                        </li>
+                      <% }) %>
                     </ul>
                   </div>
                 </div>

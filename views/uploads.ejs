@@ -139,11 +139,46 @@
     </section>
 
     <script>
-        document.getElementById('fileInput').addEventListener('change', function () {
+        const dropArea = document.getElementById("dropArea");
+        const fileInput = document.getElementById("fileInput");
+        const uploadForm = document.getElementById("uploadForm");
+
+        // Highlight drop area
+        ["dragenter", "dragover"].forEach(event => {
+            dropArea.addEventListener(event, (e) => {
+            e.preventDefault();
+            dropArea.classList.add("border-primary");
+            });
+        });
+
+        ["dragleave", "drop"].forEach(event => {
+            dropArea.addEventListener(event, () => {
+            dropArea.classList.remove("border-primary");
+            });
+        });
+
+        // Handle drop
+        dropArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+            fileInput.files = files;
+
+            document.getElementById('uploadUI').classList.add('d-none');
+            document.getElementById('processingUI').classList.remove('d-none');
+
+            uploadForm.submit();
+            }
+        });
+
+        // Handle manual select
+        fileInput.addEventListener("change", function () {
             if (this.files.length > 0) {
-                document.getElementById('uploadUI').classList.add('d-none');
-                document.getElementById('processingUI').classList.remove('d-none');
-                document.getElementById('uploadForm').submit();
+            document.getElementById('uploadUI').classList.add('d-none');
+            document.getElementById('processingUI').classList.remove('d-none');
+
+            uploadForm.submit();
             }
         });
     </script>
